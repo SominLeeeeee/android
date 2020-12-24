@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "809467610389",
+    "project_id": "petmeeting-c6f1b",
+    "storage_bucket": "petmeeting-c6f1b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:809467610389:android:437030bbc74bac2acb151c",
+        "android_client_info": {
+          "package_name": "com.somin.petmeeting"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "809467610389-gbmts106a2b02f82pgvco6mm54fqnllt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGk0k0J_cfBXgs1X2nQhQU0GkVYR2Y_2w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "809467610389-gbmts106a2b02f82pgvco6mm54fqnllt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
