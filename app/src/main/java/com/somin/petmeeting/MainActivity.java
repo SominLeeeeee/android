@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -74,7 +75,16 @@ public class MainActivity extends AppCompatActivity implements  View.OnClickList
     }
 
     private void updateUI(GoogleSignInAccount account) {
-        
+        if(account == null) {
+            Log.d("account is ", "null");
+        } else {
+            Toast toast_name = Toast.makeText(getApplicationContext(), account.getDisplayName(), Toast.LENGTH_SHORT);
+            Toast toast_mail = Toast.makeText(getApplicationContext(), account.getEmail(), Toast.LENGTH_SHORT);
+            Toast toast_id = Toast.makeText(getApplicationContext(), account.getId(), Toast.LENGTH_SHORT);
+
+            toast_id.show();
+            //toast_name.show();
+        }
     }
 
     @Override
