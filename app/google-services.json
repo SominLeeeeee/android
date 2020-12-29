@@ -7,12 +7,20 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:809467610389:android:437030bbc74bac2acb151c",
+        "mobilesdk_app_id": "1:809467610389:android:9370e62cfe0b8b56cb151c",
         "android_client_info": {
-          "package_name": "com.somin.petmeeting"
+          "package_name": "com.petmeeting.zoocheck"
         }
       },
       "oauth_client": [
+        {
+          "client_id": "809467610389-0j5usfl3veq46pt4bjrqrlojeqlmpkqq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.petmeeting.zoocheck",
+            "certificate_hash": "8a81d4d6bcdd896279e2efa3185b50616458c20b"
+          }
+        },
         {
           "client_id": "809467610389-gbmts106a2b02f82pgvco6mm54fqnllt.apps.googleusercontent.com",
           "client_type": 3
@@ -27,7 +35,7 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "809467610389-gbmts106a2b02f82pgvco6mm54fqnllt.apps.googleusercontent.com",
+              "client_id": "809467610389-31o8rb2uecfdap5nld20qjgtbbcfrv10.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
