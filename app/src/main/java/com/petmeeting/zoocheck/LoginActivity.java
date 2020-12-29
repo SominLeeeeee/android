@@ -1,4 +1,4 @@
-package com.somin.petmeeting;
+package com.petmeeting.zoocheck;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,14 +6,19 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
+import com.somin.petmeeting.R;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 import static com.google.android.gms.auth.api.signin.GoogleSignIn.*;
 
@@ -78,12 +83,36 @@ public class LoginActivity extends AppCompatActivity implements  View.OnClickLis
         if(account == null) {
             Log.d("account is ", "null");
         } else {
-            Toast toast_name = Toast.makeText(getApplicationContext(), account.getDisplayName(), Toast.LENGTH_SHORT);
-            Toast toast_mail = Toast.makeText(getApplicationContext(), account.getEmail(), Toast.LENGTH_SHORT);
-            Toast toast_id = Toast.makeText(getApplicationContext(), account.getId(), Toast.LENGTH_SHORT);
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl("http://3.137.184.184/")
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
 
-            toast_id.show();
-            //toast_name.show();
+            RetrofitService service = retrofit.create(RetrofitService.class);
+            Call<String> response = service.createUser(new Users(account.getId(), account.getEmail(), account.getDisplayName()));
+
+            response.enqueue(new Callback<String>() {
+                @Override
+                public void onResponse(Call<String> call, Response<String> response) {
+                    if(response.isSuccessful()) {
+                        // 가입을 안 했던 회원이라면
+                        Log.d("success:", "가입 안 했던 회원");
+                    } else {
+                        String jsonStr = response.errorBody().toString();
+                        Log.d("fail:", "중복 회원");
+                        /* 응답받은 것을 json으로 바꾸는 방법
+                        Gson gson = new Gson();
+                        JsonElement element = gson.fromJson(jsonStr, JsonElement.class);
+                        JsonObject jsonObject = element.getAsJsonObject(); */
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<String> call, Throwable t) {
+                    Log.d("network ", "failure");
+                }
+            });
+            Log.d("d","D");
         }
     }
 
