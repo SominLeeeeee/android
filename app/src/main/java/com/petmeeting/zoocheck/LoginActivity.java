@@ -12,7 +12,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
-import com.somin.petmeeting.R;
+import com.petmeeting.zoocheck.R;
 
 import retrofit2.Call;
 import retrofit2.Callback;
