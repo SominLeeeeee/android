@@ -18,7 +18,11 @@ public class DogRegisterAdapter extends FragmentStateAdapter {
         int index = getRealPosition(position);
         switch(index){
             case 0 :
+                return new DogRegisterFrag();
+
+            case 1:
                 return DogProfileFrag.newInstance(index+1);
+
             default:
                 return null;
         }

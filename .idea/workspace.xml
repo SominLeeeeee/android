@@ -10,7 +10,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="16131766-44cd-4a9b-97c3-af4a02cd6fa4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/dog_character_fragment.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/dog_name_fragment.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/dog_phone_address_fragment.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/dog_photo_gender_age_fragment.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/petmeeting/zoocheck/DogRegisterAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/petmeeting/zoocheck/DogRegisterAdapter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +27,26 @@
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
     </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="layoutResourceFile" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -36,18 +61,19 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/res/values" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/values" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../JungOh" />
     <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\KRX\AndroidStudioProjects\android\app\src\main\res\drawable" />
       <recent name="C:\Users\KRX\AndroidStudioProjects\android\app\src\main\res\drawable-v24" />
       <recent name="C:\Users\KRX\AndroidStudioProjects\android\app\src\main\java\com\petmeeting\zoocheck" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\KRX\AndroidStudioProjects\android\app\src\main\res\drawable" />
       <recent name="C:\Users\KRX\AndroidStudioProjects\android\app\src\main\res\values" />
       <recent name="C:\Users\KRX\AndroidStudioProjects\android\app\src\main\res\layout" />
-      <recent name="C:\Users\KRX\AndroidStudioProjects\android\app\src\main\res\drawable" />
       <recent name="C:\Users\KRX\AndroidStudioProjects\android\app\src\main\java\com\petmeeting\zoocheck" />
     </key>
   </component>
@@ -131,6 +157,14 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
+    <state x="876" y="114" key="AndroidCreateResourceFileDialog" timestamp="1609821984525">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="876" y="114" key="AndroidCreateResourceFileDialog/1920.0.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1609821984525" />
+    <state x="1112" y="278" key="FileChooserDialogImpl" timestamp="1609820302803">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="1112" y="278" key="FileChooserDialogImpl/1920.0.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1609820302803" />
     <state x="873" y="269" width="729" height="609" key="Vcs.Push.Dialog.v2" timestamp="1609506630293">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
