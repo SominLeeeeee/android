@@ -24,7 +24,7 @@ import static com.google.android.gms.auth.api.signin.GoogleSignIn.*;
 
 public class LoginActivity extends AppCompatActivity implements  View.OnClickListener {
 
-    private static final int RC_SIGN_IN = 9001;
+    private static final int GOOGLE_SIGN_IN = 9001;
     private static final String TAG = "Oauth2Google";
 
     GoogleSignInClient mGoogleSignInClient;
@@ -34,12 +34,7 @@ public class LoginActivity extends AppCompatActivity implements  View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .build();
-
-        mGoogleSignInClient = getClient(this, gso);
-        findViewById(R.id.sign_in_button).setOnClickListener(this);
+        findViewById(R.id.sign_in_google).setOnClickListener(this);
     }
 
     @Override
@@ -47,40 +42,38 @@ public class LoginActivity extends AppCompatActivity implements  View.OnClickLis
         super.onStart();
         // Check for existing Google Sign In account, if the user is already signed in
         // the GoogleSignInAccount will be non-null.
-        GoogleSignInAccount account = getLastSignedInAccount(this);
-        updateUI(account);
+        //GoogleSignInAccount account = getLastSignedInAccount(this);
+        //checkBeforeSignIn(account);
+        /* TODO - 자동로그인 기능 구현하기 */
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        SignIn user = null;
 
-        // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
-        if (requestCode == RC_SIGN_IN) {
-            // The Task returned from this call is always completed, no need to attach
-            // a listener.
-            Task<GoogleSignInAccount> task = getSignedInAccountFromIntent(data);
-            handleSignInResult(task);
+        switch(requestCode) {
+            case GOOGLE_SIGN_IN:
+                user = new SignInGoogle();
+                break;
+            default:
+                break;
         }
+
+        /* user account data를 이용하여 파싱 */
+        Users account = user.parse(data);
+        checkBeforeSignIn(account);
     }
 
-    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
-        try {
-            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
-
-            // Signed in successfully, show authenticated UI.
-            updateUI(account);
-        } catch (ApiException e) {
-            // The ApiException status code indicates the detailed failure reason.
-            // Please refer to the GoogleSignInStatusCodes class reference for more information.
-            Log.w(TAG, "signInResult:failed code=" + e.getStatusCode());
-            updateUI(null);
-        }
+    private void gotoMainActivity() {
+        /* TODO - goto main */
     }
 
-    private void updateUI(GoogleSignInAccount account) {
+    /* 서버와 통신해서 이미 가입된 회원인지 확인하고 로그인 */
+    private void checkBeforeSignIn(Users account) {
         if(account == null) {
             Log.d("account is ", "null");
+            return;
         } else {
             Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl("http://3.137.184.184/")
@@ -88,22 +81,17 @@ public class LoginActivity extends AppCompatActivity implements  View.OnClickLis
                     .build();
 
             RetrofitService service = retrofit.create(RetrofitService.class);
-            Call<String> response = service.createUser(new Users(account.getId(), account.getEmail(), account.getDisplayName()));
+            Call<String> response = service.createUser(account);
 
             response.enqueue(new Callback<String>() {
                 @Override
                 public void onResponse(Call<String> call, Response<String> response) {
-                    if(response.isSuccessful()) {
-                        // 가입을 안 했던 회원이라면
-                        Log.d("success:", "가입 안 했던 회원");
-                    } else {
-                        String jsonStr = response.errorBody().toString();
-                        Log.d("fail:", "중복 회원");
-                        /* 응답받은 것을 json으로 바꾸는 방법
-                        Gson gson = new Gson();
-                        JsonElement element = gson.fromJson(jsonStr, JsonElement.class);
-                        JsonObject jsonObject = element.getAsJsonObject(); */
+                    if(response.isSuccessful()) { // 가입을 안 했던 회원
+                        Log.d("AlreadySignUp:", "False");
+                    } else { // 가입이 되어있던 회원
+                        Log.d("AlreadySignUp:", "True");
                     }
+                    gotoMainActivity();
                 }
 
                 @Override
@@ -111,22 +99,17 @@ public class LoginActivity extends AppCompatActivity implements  View.OnClickLis
                     Log.d("network ", "failure");
                 }
             });
-            Log.d("d","D");
         }
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.sign_in_button:
-                signIn();
+            case R.id.sign_in_google:
+                SignInGoogle google = new SignInGoogle();
+                google.signIn(this);
                 break;
-            // ...
         }
     }
 
-    private void signIn() {
-        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-        startActivityForResult(signInIntent, RC_SIGN_IN);
-    }
 }
