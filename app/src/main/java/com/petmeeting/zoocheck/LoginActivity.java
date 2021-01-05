@@ -3,9 +3,14 @@ package com.petmeeting.zoocheck;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -13,6 +18,9 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 import com.petmeeting.zoocheck.R;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -22,7 +30,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 import static com.google.android.gms.auth.api.signin.GoogleSignIn.*;
 
-public class LoginActivity extends AppCompatActivity implements  View.OnClickListener {
+public class LoginActivity extends AppCompatActivity implements  View.OnClickListener{
 
     private static final int GOOGLE_SIGN_IN = 9001;
     private static final String TAG = "Oauth2Google";
@@ -42,8 +50,8 @@ public class LoginActivity extends AppCompatActivity implements  View.OnClickLis
         super.onStart();
         // Check for existing Google Sign In account, if the user is already signed in
         // the GoogleSignInAccount will be non-null.
-        //GoogleSignInAccount account = getLastSignedInAccount(this);
-        //checkBeforeSignIn(account);
+        // GoogleSignInAccount account = getLastSignedInAccount(this);
+        // checkBeforeSignIn(account);
         /* TODO - 자동로그인 기능 구현하기 */
     }
 
@@ -90,6 +98,10 @@ public class LoginActivity extends AppCompatActivity implements  View.OnClickLis
                         Log.d("AlreadySignUp:", "False");
                     } else { // 가입이 되어있던 회원
                         Log.d("AlreadySignUp:", "True");
+                        Toast toast = Toast.makeText(getApplicationContext(),
+                                "email: " + account.getEmail() + "\nid: " + account.getId()
+                                , Toast.LENGTH_SHORT);
+                        toast.show();
                     }
                     gotoMainActivity();
                 }

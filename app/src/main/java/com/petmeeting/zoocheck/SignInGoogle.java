@@ -48,7 +48,7 @@ public class SignInGoogle implements SignIn {
         // handle sign in result
         try { // signed in successfully
             account = task.getResult(ApiException.class);
-            return new Users(account.getId(), account.getEmail(), account.getDisplayName());
+            return new Users(account.getEmail(), account.getEmail(), account.getDisplayName());
         } catch(ApiException e) { // log - failure reason
             Log.w(TAG, "signInResult:failed code=" + e.getStatusCode());
             return null;
