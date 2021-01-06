@@ -3,6 +3,7 @@ package com.petmeeting.zoocheck;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
@@ -74,7 +75,15 @@ public class LoginActivity extends AppCompatActivity implements  View.OnClickLis
         checkBeforeSignIn(account);
     }
 
-    private void gotoMainActivity() {
+    private void gotoMainActivity(Users account) {
+        /* TODO - store account info (shared preference) */
+        SharedPreferences sharedPreferences = getSharedPreferences("account", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("id", account.getId());
+        editor.commit();
+
+        Toast.makeText(this, "id를 저장하였습니다", Toast.LENGTH_SHORT).show();
+
         /* TODO - goto main */
     }
 
@@ -104,7 +113,7 @@ public class LoginActivity extends AppCompatActivity implements  View.OnClickLis
                                 , Toast.LENGTH_SHORT);
                         toast.show();
                     }
-                    gotoMainActivity();
+                    gotoMainActivity(account);
                 }
 
                 @Override
