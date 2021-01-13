@@ -5,67 +5,181 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SetDestination">
-
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_marginTop="26dp"
-        android:text="주소"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <EditText
-        android:id="@+id/editText3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/textView3"
-        android:layout_alignTop="@+id/textView3"
-        android:ems="10" >
-
-        <requestFocus />
-    </EditText>
-
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/editText3"
-        android:layout_alignBottom="@+id/editText3"
-        android:layout_toRightOf="@+id/editText3"
-        android:text="지도" />
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/editText3"
-        android:layout_alignBottom="@+id/editText3"
-        android:layout_toRightOf="@+id/button4"
-        android:text="변환" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/button2"
-        android:layout_marginTop="28dp"
-        android:text="조회한 주소정보 출력"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#000000"
-        android:layout_below="@+id/textView4">
-        <com.google.android.gms.maps.MapView
-            android:id="@+id/map"
+        android:layout_height="wrap_content"
+        android:id="@+id/walk_register">
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:name="com.google.android.gms.maps.MapFragment"
-            />
-    </RelativeLayout>
-
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/adrress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20sp"
+                android:text="주소"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+               <EditText
+                    android:id="@+id/edit_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/address"
+                    android:ems="10" >
+                </EditText>
+                <Button
+                    android:id="@+id/button4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/edit_address"
+                    android:layout_alignBottom="@+id/edit_address"
+                    android:layout_toRightOf="@+id/edit_address"
+                    android:text="지도" />
+                <Button
+                    android:id="@+id/button2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/edit_address"
+                    android:layout_alignBottom="@+id/edit_address"
+                    android:layout_toRightOf="@+id/button4"
+                    android:text="변환" />
+            </RelativeLayout>
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:text="조회한 주소정보 출력"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="산책정보등록"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_marginTop="20sp"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/expectedElapsedTime"
+                    android:text="산책 예상 시간"
+                    android:layout_marginBottom="10dp"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/edit_expectedElapsedTime"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:hint="분 단위로 입력하세요."
+                    android:textSize="12sp"
+                    android:layout_marginLeft="10dp"
+                    android:textColorHint="#D3D3D3"
+                    android:layout_toRightOf="@id/expectedElapsedTime"
+                    android:layout_alignBaseline="@id/expectedElapsedTime"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/area"
+                    android:text="예상범위"
+                    android:layout_below="@id/expectedElapsedTime"
+                    android:layout_marginBottom="10dp"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/edit_area"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:hint="미터 단위로 입력하세요."
+                    android:textSize="12sp"
+                    android:layout_marginLeft="10dp"
+                    android:textColorHint="#D3D3D3"
+                    android:layout_toRightOf="@id/area"
+                    android:layout_alignBaseline="@id/area"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/isGroup"
+                    android:text="그룹산책여부"
+                    android:layout_below="@id/area"
+                    android:layout_marginBottom="10dp"/>
+                <RadioGroup
+                    android:id="@+id/radioGroup_isGroup"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="20sp"
+                    android:layout_marginLeft="20sp"
+                    android:layout_toRightOf="@id/isGroup"
+                    android:layout_alignTop="@id/isGroup">
+                    <RadioButton android:layout_weight="1"
+                        android:text="Yes"
+                        android:id="@+id/rg_btn1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content" />
+                    <RadioButton
+                        android:layout_weight="1"
+                        android:text="No"
+                        android:id="@+id/rg_btn2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content" />
+                </RadioGroup>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/minHeadCount"
+                    android:text="최소인원"
+                    android:layout_below="@id/isGroup"
+                    android:layout_marginBottom="10dp"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/edit_minHeadCount"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:hint="2명이상(본인포함)부터 가능"
+                    android:textSize="12sp"
+                    android:layout_marginLeft="10dp"
+                    android:textColorHint="#D3D3D3"
+                    android:layout_toRightOf="@id/minHeadCount"
+                    android:layout_alignBaseline="@id/minHeadCount"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/maxHeadCount"
+                    android:text="최대인원"
+                    android:layout_below="@id/minHeadCount"
+                    android:layout_marginBottom="10dp"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/edit_maxHeadCount"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:hint="21억명 이하 가능"
+                    android:textSize="12sp"
+                    android:layout_marginLeft="10dp"
+                    android:textColorHint="#D3D3D3"
+                    android:layout_toRightOf="@id/maxHeadCount"
+                    android:layout_alignBaseline="@id/maxHeadCount"/>
+            </RelativeLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/text_view_result"
+                android:text="text_view_result"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_register"
+                android:text="확인"
+                android:layout_below="@id/edit_maxHeadCount"/>
+        </LinearLayout>
+    </ScrollView>
 </RelativeLayout>
