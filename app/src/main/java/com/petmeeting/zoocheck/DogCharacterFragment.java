@@ -98,7 +98,7 @@ public class DogCharacterFragment extends Fragment {
             @Override
             public void onClick(View v){
                 if(isActivityChecked==true&&isAggressiveChecked==true&&isSocialityChecked==true&&isBarkChecked==true){
-                    ((DogRegister)getActivity()).replaceFragment(DogPhotoFragment.newInstance());
+                    ((DogRegister)getActivity()).replaceFragment(DogNumFragment.newInstance());
                 }
             }
         });
