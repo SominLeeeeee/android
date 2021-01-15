@@ -1,30 +1,22 @@
 package com.petmeeting.zoocheck;
 
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-<<<<<<< Updated upstream
-public class WalkingReviewActivity extends AppCompatActivity implements View.OnClickListener {
-=======
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.lang.reflect.Type;
 import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -47,46 +39,85 @@ public class WalkingReviewActivity extends AppCompatActivity implements View.OnC
 
     RetrofitService service = retrofit.create(RetrofitService.class);
 
->>>>>>> Stashed changes
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_waliking_review);
 
         findViewById(R.id.button_review_dog).setOnClickListener(this);
+        findViewById(R.id.button_review_people).setOnClickListener(this);
+        findViewById(R.id.button_walk).setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.button_review_dog:
-                // 정보 가져오는 방법
-                SharedPreferences sharedPreferences = getSharedPreferences("account", MODE_PRIVATE);
-                String userId = sharedPreferences.getString("id", "");
-                String temp = "불러왔습니다\nuser id : " + userId;
-                Toast.makeText(this, temp, Toast.LENGTH_SHORT).show();
-                /* TODO */
+                transferReview();
                 break;
             case R.id.button_review_people:
                 /* TODO */
+                break;
+            case R.id.button_walk:
+                transferWalk();
                 break;
             default:
                 break;
         }
     }
 
-    /* TODO - data를 입력받기 */
+    /* sharedPreference로부터 userId 가져오기 */
+    protected String getUserId() {
+        SharedPreferences sharedPreferences = getSharedPreferences("account", MODE_PRIVATE);
+        String userId = sharedPreferences.getString("id", "");
+        return userId;
+    }
 
-    /* TODO - 입력받은 데이터를 WalkingReview 형식으로 만들기 */
+    /* 데이터를 입력받아 WalkingReview 형식으로 만들기 */
+    protected WalkingReview makeReview(long walkId) {
+        String userId, message = "test";
+        int score = 3;
 
-<<<<<<< Updated upstream
-    /* TODO - WalkingReview를 서버에 전송하기 */
-=======
+        // TODO - 지금은 임시로 데이터 저장해둠, 데이터 입력받는 거 구현하기
+        userId = getUserId();
+
+        WalkingReview review = new WalkingReview(userId, message, score, walkId);
+        return review;
+    }
+
+    /* WalkingReview를 서버에 전송하기 */
+    protected void transferReview() {
+        long walkId = (long) (Math.random() * 10000);
+        WalkingReview review = makeReview(walkId);
+        Call<JSONObject> response = service.createReview(walkId, review);
+
+        response.enqueue(new Callback<JSONObject>() {
+            @Override
+            public void onResponse(Call<JSONObject> call, Response<JSONObject> response) {
+                if(response.isSuccessful()) {
+                    Log.d("review response: ", "successful");
+                    Toast.makeText(getApplicationContext(), "response success", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Log.d("review response: ", "fail");
+                    Toast.makeText(getApplicationContext(), "response fail", Toast.LENGTH_SHORT).show();
+                }
+            }
+
             @Override
             public void onFailure(Call<JSONObject> call, Throwable t) {
                 Log.d("network: ", "fail");
             }
         });
+    }
+
+    /* 산책 만들기 */
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    protected Walk makeWalk() {
+        Walk walk = new Walk(getUserId(),
+                LocalDateTime.of(2020,12,12,20,10,10),
+                127.021, 63.32432123, 30, 500);
+        return walk;
     }
 
     /* 산책 등록 */
@@ -110,10 +141,10 @@ public class WalkingReviewActivity extends AppCompatActivity implements View.OnC
             @Override
             public void onFailure(Call<JsonObject> call, Throwable t) {
                 Toast.makeText(getApplicationContext(), "network failure", Toast.LENGTH_SHORT).show();
+                Log.d("network: ", "fail");
             }
         });
     }
->>>>>>> Stashed changes
 
     /* TODO - 응답 받아서 처리하기 */
 }
