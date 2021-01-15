@@ -2,9 +2,9 @@ package com.petmeeting.zoocheck;
 
 public class ReviewId {
     Users user;
-    long walkId;
+    Long walkId;
 
-    public ReviewId(String userId, long walkId) {
+    public ReviewId(String userId, Long walkId) {
         this.walkId = walkId;
         setUser(userId);
     }
