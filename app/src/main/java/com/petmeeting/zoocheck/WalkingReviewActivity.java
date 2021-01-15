@@ -80,7 +80,7 @@ public class WalkingReviewActivity extends AppCompatActivity implements View.OnC
         // TODO - 지금은 임시로 데이터 저장해둠, 데이터 입력받는 거 구현하기
         userId = getUserId();
 
-        WalkingReview review = new WalkingReview(userId, message, score, walkId);
+        WalkingReview review = new WalkingReview(userId, walkId, "", "", 5, 5, 5, 5, 5);
         return review;
     }
 
@@ -122,17 +122,16 @@ public class WalkingReviewActivity extends AppCompatActivity implements View.OnC
     /* 산책 등록 */
     @RequiresApi(api = Build.VERSION_CODES.O)
     protected void transferWalk() {
-        Walk walk = makeWalk();
-        Call<JsonObject> callWalk = service.createWalk(walk);
-
-        callWalk.enqueue(new Callback<JsonObject>() {
+        Callback<JsonObject> callback = new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 if(response.isSuccessful()) {
                     walkId = response.body().get("id").getAsLong();
+                    Toast.makeText(getApplicationContext(), "산책 후기 등록에 성공했습니다", Toast.LENGTH_SHORT).show();
                     Log.d("get walkId", "success");
                 } else {
                     Toast.makeText(getApplicationContext(), "산책 후기 등록에 실패했습니다", Toast.LENGTH_SHORT).show();
+                    Log.d("get walkId", "failure");
                 }
             }
 
@@ -141,7 +140,10 @@ public class WalkingReviewActivity extends AppCompatActivity implements View.OnC
                 Toast.makeText(getApplicationContext(), "산책 후기 등록에 실패했습니다", Toast.LENGTH_SHORT).show();
                 Log.d("network: ", "failure");
             }
-        });
+        };
+
+        Walk walk = makeWalk();
+        walk.transferWalk(service, callback);
     }
 
     /* TODO - 응답 받아서 처리하기 */
