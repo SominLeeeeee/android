@@ -36,11 +36,11 @@ public class DogCharacterFragment extends Fragment {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 RadioButton radioButton=(RadioButton)view.findViewById(checkedId);
-                if(checkedId == R.id.dogActivity_1){dogActivity=1;isActivityChecked=true;Log.i("dogActivity", String.valueOf(isActivityChecked));}
-                else if(checkedId == R.id.dogActivity_2){dogActivity=2;isActivityChecked=true;Log.i("dogActivity", String.valueOf(isActivityChecked));}
-                else if(checkedId==R.id.dogActivity_3){dogActivity=3;isActivityChecked=true;Log.i("dogActivity", String.valueOf(isActivityChecked));}
-                else if(checkedId==R.id.dogActivity_4){dogActivity=4;isActivityChecked=true;Log.i("dogActivity", String.valueOf(isActivityChecked));}
-                else if(checkedId==R.id.dogActivity_5){dogActivity=5;isActivityChecked=true;Log.i("dogActivity", String.valueOf(isActivityChecked));}
+                if(checkedId == R.id.dogActivity_1){dogActivity=1;isActivityChecked=true;}
+                else if(checkedId == R.id.dogActivity_2){dogActivity=2;isActivityChecked=true;}
+                else if(checkedId==R.id.dogActivity_3){dogActivity=3;isActivityChecked=true;}
+                else if(checkedId==R.id.dogActivity_4){dogActivity=4;isActivityChecked=true;}
+                else if(checkedId==R.id.dogActivity_5){dogActivity=5;isActivityChecked=true;}
 
 
             }
@@ -51,11 +51,11 @@ public class DogCharacterFragment extends Fragment {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 RadioButton radioButton=(RadioButton)view.findViewById(checkedId);
-                if(checkedId == R.id.dogSociality_1){dogSociality=1;isSocialityChecked=true;Log.i("dogSociality", String.valueOf(isSocialityChecked));}
-                else if(checkedId == R.id.dogSociality_2){dogSociality=2;isSocialityChecked=true;Log.i("dogSociality", String.valueOf(isSocialityChecked));}
-                else if(checkedId == R.id.dogSociality_3){dogSociality=3;isSocialityChecked=true;Log.i("dogSociality", String.valueOf(isSocialityChecked));}
-                else if(checkedId == R.id.dogSociality_4){dogSociality=4;isSocialityChecked=true;Log.i("dogSociality", String.valueOf(isSocialityChecked));}
-                else if(checkedId == R.id.dogSociality_5){dogSociality=5;isSocialityChecked=true;Log.i("dogSociality", String.valueOf(isSocialityChecked));}
+                if(checkedId == R.id.dogSociality_1){dogSociality=1;isSocialityChecked=true;}
+                else if(checkedId == R.id.dogSociality_2){dogSociality=2;isSocialityChecked=true;}
+                else if(checkedId == R.id.dogSociality_3){dogSociality=3;isSocialityChecked=true;}
+                else if(checkedId == R.id.dogSociality_4){dogSociality=4;isSocialityChecked=true;}
+                else if(checkedId == R.id.dogSociality_5){dogSociality=5;isSocialityChecked=true;}
 
 
             }
@@ -66,11 +66,11 @@ public class DogCharacterFragment extends Fragment {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 RadioButton radioButton=(RadioButton)view.findViewById(checkedId);
-                if(checkedId == R.id.dogAggressive_1){dogAggressive=1;isAggressiveChecked=true;Log.i("dogAggressive", String.valueOf(isAggressiveChecked));}
-                else if(checkedId == R.id.dogAggressive_2){dogAggressive=2;isAggressiveChecked=true;Log.i("dogAggressive", String.valueOf(isAggressiveChecked));}
-                else if(checkedId == R.id.dogAggressive_3){dogAggressive=3;isAggressiveChecked=true;Log.i("dogAggressive", String.valueOf(isAggressiveChecked));}
-                else if(checkedId == R.id.dogAggressive_4){dogAggressive=4;isAggressiveChecked=true;Log.i("dogAggressive", String.valueOf(isAggressiveChecked));}
-                else if(checkedId == R.id.dogAggressive_5){dogAggressive=5;isAggressiveChecked=true;Log.i("dogAggressive", String.valueOf(isAggressiveChecked));}
+                if(checkedId == R.id.dogAggressive_1){dogAggressive=1;isAggressiveChecked=true;}
+                else if(checkedId == R.id.dogAggressive_2){dogAggressive=2;isAggressiveChecked=true;}
+                else if(checkedId == R.id.dogAggressive_3){dogAggressive=3;isAggressiveChecked=true;}
+                else if(checkedId == R.id.dogAggressive_4){dogAggressive=4;isAggressiveChecked=true;}
+                else if(checkedId == R.id.dogAggressive_5){dogAggressive=5;isAggressiveChecked=true;}
 
 
             }
@@ -83,11 +83,11 @@ public class DogCharacterFragment extends Fragment {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 RadioButton radioButton=(RadioButton)view.findViewById(checkedId);
 
-                if(checkedId == R.id.dogBark_1){dogBark=1;isBarkChecked=true;Log.i("dogBark", String.valueOf(isBarkChecked));}
-                else if(checkedId == R.id.dogBark_2){dogBark=2;isBarkChecked=true;Log.i("dogBark", String.valueOf(isBarkChecked));}
-                else if(checkedId == R.id.dogBark_3){dogBark=3;isBarkChecked=true;Log.i("dogBark", String.valueOf(isBarkChecked));}
-                else if(checkedId == R.id.dogBark_4){dogBark=4;isBarkChecked=true;Log.i("dogBark", String.valueOf(isBarkChecked));}
-                else if(checkedId == R.id.dogBark_5){dogBark=5;isBarkChecked=true;Log.i("dogBark", String.valueOf(isBarkChecked));}
+                if(checkedId == R.id.dogBark_1){dogBark=1;isBarkChecked=true;}
+                else if(checkedId == R.id.dogBark_2){dogBark=2;isBarkChecked=true;}
+                else if(checkedId == R.id.dogBark_3){dogBark=3;isBarkChecked=true;}
+                else if(checkedId == R.id.dogBark_4){dogBark=4;isBarkChecked=true;}
+                else if(checkedId == R.id.dogBark_5){dogBark=5;isBarkChecked=true;}
 
             }
         });

@@ -28,7 +28,7 @@ public class DogNumFragment extends Fragment {
             public void onClick(View v){
                 if(dog_num.getText().toString().equals("")){ }
                 else{
-                    ((DogRegister)getActivity()).replaceFragment(DogPhotoFragment.newInstance());
+                    ((DogRegister)getActivity()).replaceFragment(DogNameFragment.newInstance());
                 }
 
             }
