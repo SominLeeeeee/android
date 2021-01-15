@@ -12,11 +12,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import org.json.JSONObject;
-
 import java.time.LocalDateTime;
 
 import retrofit2.Call;
@@ -131,20 +129,17 @@ public class WalkingReviewActivity extends AppCompatActivity implements View.OnC
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 if(response.isSuccessful()) {
-                    /* TODO - response에서 walkId 뽑아내서 사용하기 */
-                    Toast.makeText(getApplicationContext(), "get walkid success", Toast.LENGTH_SHORT).show();
                     walkId = response.body().get("id").getAsLong();
-                    Log.d("walkId : ", walkId.toString());
+                    Log.d("get walkId", "success");
                 } else {
-                    Toast.makeText(getApplicationContext(), "fail!!!!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "산책 후기 등록에 실패했습니다", Toast.LENGTH_SHORT).show();
                 }
-                Log.d("d", "d");
             }
 
             @Override
             public void onFailure(Call<JsonObject> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), "network failure", Toast.LENGTH_SHORT).show();
-                Log.d("network: ", "fail");
+                Toast.makeText(getApplicationContext(), "산책 후기 등록에 실패했습니다", Toast.LENGTH_SHORT).show();
+                Log.d("network: ", "failure");
             }
         });
     }
