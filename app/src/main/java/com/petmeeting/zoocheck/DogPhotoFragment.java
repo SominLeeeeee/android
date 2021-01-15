@@ -55,6 +55,7 @@ public class DogPhotoFragment extends Fragment {
 
     public static boolean isDogMale = false;
     public static boolean isDogFemale = false;
+    public static boolean isTherePhoto = false;
 
     public static DogPhotoFragment newInstance(){
         return new DogPhotoFragment();
@@ -117,9 +118,10 @@ public class DogPhotoFragment extends Fragment {
             @Override
             public void onClick(View v){
 
-                if(dog_age.getText().toString().equals("")||(isDogFemale == false && isDogMale == false)){ }
+                if(dog_age.getText().toString().equals("")||(isDogFemale == false && isDogMale == false)||isTherePhoto==false){ }
                 else{
-                   // ((DogRegister)getActivity()).replaceFragment(DogPhotoFragment.newInstance());
+                    Intent intent = new Intent(getActivity(), MainActivity.class);
+                    startActivity(intent);
                 }
 
             }
@@ -180,6 +182,7 @@ public class DogPhotoFragment extends Fragment {
                                 e.printStackTrace();
                             }
                         }
+                        isTherePhoto=true;
                     }
                     break;
                 }
@@ -195,6 +198,7 @@ public class DogPhotoFragment extends Fragment {
                         }catch(Exception e){
                             e.printStackTrace();
                         }
+                        isTherePhoto=true;
 
                     }
                     break;
