@@ -8,8 +8,5 @@
         android:id="@+id/gallery"
         android:title="GALLERY"/>
 
-    <item
-        android:id="@+id/basic"
-        android:title="BASIC"/>
 
 </menu>

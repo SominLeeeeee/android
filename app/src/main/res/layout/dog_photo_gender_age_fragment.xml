@@ -19,16 +19,34 @@
             android:textSize="25dp"
             android:layout_gravity="center"/>
 
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
-        <ImageButton
-            android:layout_marginTop="10dp"
-            android:id="@+id/btn_photo"
-            android:layout_width="200dp"
-            android:layout_height="150dp"
-            android:background="@drawable/camera_button"
-            style="?android:borderlessButtonStyle" />
+            <ImageView
+                android:id="@+id/iv_photo"
+                android:layout_width="wrap_content"
+                android:layout_height="150dp"
+                android:layout_centerHorizontal="true"
+                android:scaleType="fitCenter"
+                android:background="@drawable/camera_button"
+                />
+
+            <Button
+                android:layout_marginTop="10dp"
+                android:id="@+id/btn_photo"
+                android:layout_width="200dp"
+                android:layout_height="150dp"
+                android:background="#00ff0000"
+                style="?android:borderlessButtonStyle"
+                />
+
+
+        </RelativeLayout>
+
 
         <TextView
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="강아지의 나이는?"
@@ -38,7 +56,7 @@
             android:layout_gravity="center"/>
 
         <EditText
-            android:id="@+id/what_dogName"
+            android:id="@+id/what_dogAge"
             android:layout_width="200dp"
             android:layout_height="wrap_content"/>
 
@@ -53,7 +71,7 @@
             android:layout_gravity="center"/>
 
         <RadioGroup
-            android:id="@+id/radioGroup"
+            android:id="@+id/gender_radioGroup"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
