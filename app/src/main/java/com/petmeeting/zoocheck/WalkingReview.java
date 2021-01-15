@@ -6,14 +6,14 @@ public class WalkingReview {
     String message;
     int score;
 
-    public WalkingReview(String userId, String message, int score) {
-        setId(userId);
+    public WalkingReview(String userId, String message, int score, long walkId) {
+        setId(userId, walkId);
         setMessage(message);
         setScore(score);
     }
 
-    public void setId(String userId) {
-        this.id = new ReviewId(userId);
+    public void setId(String userId, long walkId) {
+        this.id = new ReviewId(userId, walkId);
     }
 
     public void setMessage(String message) {
