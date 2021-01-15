@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import org.json.JSONObject;
@@ -132,6 +133,8 @@ public class WalkingReviewActivity extends AppCompatActivity implements View.OnC
                 if(response.isSuccessful()) {
                     /* TODO - response에서 walkId 뽑아내서 사용하기 */
                     Toast.makeText(getApplicationContext(), "get walkid success", Toast.LENGTH_SHORT).show();
+                    walkId = response.body().get("id").getAsLong();
+                    Log.d("walkId : ", walkId.toString());
                 } else {
                     Toast.makeText(getApplicationContext(), "fail!!!!", Toast.LENGTH_SHORT).show();
                 }
