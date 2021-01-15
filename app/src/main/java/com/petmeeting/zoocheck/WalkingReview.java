@@ -3,37 +3,54 @@ package com.petmeeting.zoocheck;
 public class WalkingReview {
 
     ReviewId id;
-    String message;
+    String ownerReview, dogReview;
     int score;
+    int activity, sociality, aggression, bark;
 
-    public WalkingReview(String userId, String message, int score, long walkId) {
+    public WalkingReview(String userId, Long walkId, String ownerReview, String dogReview, int score,
+                         int activity, int sociality, int aggression, int bark) {
         setId(userId, walkId);
-        setMessage(message);
-        setScore(score);
-    }
-
-    public void setId(String userId, long walkId) {
-        this.id = new ReviewId(userId, walkId);
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public void setScore(int score) {
         this.score = score;
+        this.dogReview = dogReview;
+        this.ownerReview = ownerReview;
+        this.activity = activity;
+        this.sociality = sociality;
+        this.aggression = aggression;
+        this.bark = bark;
+    }
+
+    public void setId(String userId, Long walkId) {
+        this.id = new ReviewId(userId, walkId);
     }
 
     public ReviewId getId() {
         return id;
     }
 
-    public String getMessage() {
-        return message;
+    public String getOwnerReview() {
+        return ownerReview;
     }
+
+    public String getDogReview() { return dogReview; }
 
     public int getScore() {
         return score;
+    }
+
+    public int getActivity() {
+        return activity;
+    }
+
+    public int getSociality() {
+        return sociality;
+    }
+
+    public int getAggression() {
+        return aggression;
+    }
+
+    public int getBark() {
+        return bark;
     }
 
 }
