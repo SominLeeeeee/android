@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         findViewById(R.id.button_goto_login).setOnClickListener(this);
         findViewById(R.id.button_goto_review).setOnClickListener(this);
+        findViewById(R.id.button_goto_dogRegister).setOnClickListener(this);
     }
 
     @Override
@@ -34,6 +35,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.button_goto_review:
                 Intent intent1 = new Intent(this, WalkingReviewActivity.class);
                 startActivity(intent1);
+                break;
+
+            case R.id.button_goto_dogRegister:
+                Intent intent2 = new Intent(this, DogRegister.class);
+                startActivity(intent2);
                 break;
         }
     }
