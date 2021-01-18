@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -10,19 +11,11 @@
         android:layout_margin="20dp">
 
         <Button
-            android:id="@+id/button_review_people"
+            android:id="@+id/button_review_walking"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="견주"
-            android:textSize="40dp" />
-
-        <Button
-            android:id="@+id/button_review_dog"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="강쥐"
+            android:text="후기남기기"
             android:textSize="40dp" />
 
         <Button
@@ -34,6 +27,106 @@
             android:textSize="40dp" />
 
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="공격성"
+                android:textSize="20dp"/>
+
+            <RatingBar
+                style="@style/Widget.AppCompat.RatingBar.Indicator"
+                android:isIndicator="false"
+                android:id="@+id/rating_dog_aggression"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numStars="5"
+                android:rating="4"
+                android:stepSize="1" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="사회성"
+                android:textSize="20dp"/>
+
+            <RatingBar
+                style="@style/Widget.AppCompat.RatingBar.Indicator"
+                android:isIndicator="false"
+                android:id="@+id/rating_dog_sociality"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numStars="5"
+                android:rating="4"
+                android:stepSize="1" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="활동성"
+                android:textSize="20dp"/>
+
+            <RatingBar
+                style="@style/Widget.AppCompat.RatingBar.Indicator"
+                android:isIndicator="false"
+                android:id="@+id/rating_dog_activity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numStars="5"
+                android:rating="4"
+                android:stepSize="1" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="짖음"
+                android:textSize="20dp"/>
+
+            <RatingBar
+                style="@style/Widget.AppCompat.RatingBar.Indicator"
+                android:isIndicator="false"
+                android:id="@+id/rating_dog_bark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numStars="5"
+                android:rating="4"
+                android:stepSize="1" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
 
 
 </LinearLayout>
