@@ -17,7 +17,7 @@ public interface RetrofitService {
     Call<String> createUser (@Body Users user);
 
     @POST("/walks/{walkId}/reviews")
-    Call<JSONObject> createReview (@Path("walkId") long walkId, @Body WalkingReview review);
+    Call<JsonObject> createReview (@Path("walkId") long walkId, @Body WalkingReview review);
 
     @POST("/walks")
     Call<JsonObject> createWalk (@Body Walk walk);
