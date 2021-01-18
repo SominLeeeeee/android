@@ -14,7 +14,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 
-import org.json.JSONObject;
 import java.time.LocalDateTime;
 
 import retrofit2.Call;
@@ -25,8 +24,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 @RequiresApi(api = Build.VERSION_CODES.O)
 public class WalkingReviewActivity extends AppCompatActivity implements View.OnClickListener {
-    Long walkId;
-
     Gson gson = new GsonBuilder()
             .registerTypeAdapter(LocalDateTime.class, new GsonLocalDateTimeAdapter())
             .create();
@@ -65,20 +62,13 @@ public class WalkingReviewActivity extends AppCompatActivity implements View.OnC
         }
     }
 
-    /* sharedPreference로부터 userId 가져오기 */
-    protected String getUserId() {
-        SharedPreferences sharedPreferences = getSharedPreferences("account", MODE_PRIVATE);
-        String userId = sharedPreferences.getString("id", "");
-        return userId;
-    }
-
     /* 데이터를 입력받아 WalkingReview 형식으로 만들기 */
     protected WalkingReview makeReview() {
         String userId, message = "test";
         int score = 3;
 
         // TODO - 지금은 임시로 데이터 저장해둠, 데이터 입력받는 거 구현하기
-        userId = getUserId();
+        userId = UseSharedPref.getUserId(this);
 
         WalkingReview review = new WalkingReview(userId, "", "", 5, 5, 5, 5, 5);
         return review;
@@ -86,6 +76,7 @@ public class WalkingReviewActivity extends AppCompatActivity implements View.OnC
 
     /* WalkingReview를 서버에 전송하기 */
     protected void transferReview() {
+        Long walkId = UseSharedPref.getWalkId(this);
         if(walkId == null) {
             Toast.makeText(getApplicationContext(), "walkId is null", Toast.LENGTH_SHORT).show();
             return;
@@ -117,7 +108,7 @@ public class WalkingReviewActivity extends AppCompatActivity implements View.OnC
     /* 산책 만들기 */
     @RequiresApi(api = Build.VERSION_CODES.O)
     protected Walk makeWalk() {
-        Walk walk = new Walk(getUserId(),
+        Walk walk = new Walk(UseSharedPref.getUserId(this),
                 LocalDateTime.of(2020,12,12,20,10,10),
                 127.021, 63.32432123, 30, 500);
         return walk;
@@ -130,9 +121,10 @@ public class WalkingReviewActivity extends AppCompatActivity implements View.OnC
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 if(response.isSuccessful()) {
-                    walkId = response.body().get("id").getAsLong();
+                    Long walkId = response.body().get("id").getAsLong();
                     Toast.makeText(getApplicationContext(), "post walk success", Toast.LENGTH_SHORT).show();
                     Log.d("get walkId", "success");
+                    UseSharedPref.setWalkId(getApplicationContext(), walkId);
                 } else {
                     Toast.makeText(getApplicationContext(), "post walk fail", Toast.LENGTH_SHORT).show();
                     Log.d("get walkId", "failure");

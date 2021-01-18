@@ -75,13 +75,14 @@ public class LoginActivity extends AppCompatActivity implements  View.OnClickLis
     }
 
     private void gotoMainActivity(Users account) {
-        /* TODO - store account info (shared preference) */
+        /*
         SharedPreferences sharedPreferences = getSharedPreferences("account", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("id", account.getId());
-        editor.commit();
-
-        Toast.makeText(this, "id를 저장하였습니다", Toast.LENGTH_SHORT).show();
+        editor.commit(); */
+        UseSharedPref.setUserId(this, account.getId());
+        String UserId = UseSharedPref.getUserId(this);
+        Toast.makeText(this, UserId, Toast.LENGTH_SHORT).show();
 
         /* TODO - goto main */
     }
