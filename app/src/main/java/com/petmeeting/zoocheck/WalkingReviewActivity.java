@@ -73,26 +73,30 @@ public class WalkingReviewActivity extends AppCompatActivity implements View.OnC
     }
 
     /* 데이터를 입력받아 WalkingReview 형식으로 만들기 */
-    protected WalkingReview makeReview(long walkId) {
+    protected WalkingReview makeReview() {
         String userId, message = "test";
         int score = 3;
 
         // TODO - 지금은 임시로 데이터 저장해둠, 데이터 입력받는 거 구현하기
         userId = getUserId();
 
-        WalkingReview review = new WalkingReview(userId, walkId, "", "", 5, 5, 5, 5, 5);
+        WalkingReview review = new WalkingReview(userId, "", "", 5, 5, 5, 5, 5);
         return review;
     }
 
     /* WalkingReview를 서버에 전송하기 */
     protected void transferReview() {
-        long walkId = (long) (Math.random() * 10000);
-        WalkingReview review = makeReview(walkId);
-        Call<JSONObject> response = service.createReview(walkId, review);
+        if(walkId == null) {
+            Toast.makeText(getApplicationContext(), "walkId is null", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
-        response.enqueue(new Callback<JSONObject>() {
+        WalkingReview review = makeReview();
+        Call<JsonObject> response = service.createReview(walkId, review);
+
+        response.enqueue(new Callback<JsonObject>() {
             @Override
-            public void onResponse(Call<JSONObject> call, Response<JSONObject> response) {
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 if(response.isSuccessful()) {
                     Log.d("review response: ", "successful");
                     Toast.makeText(getApplicationContext(), "response success", Toast.LENGTH_SHORT).show();
@@ -104,7 +108,7 @@ public class WalkingReviewActivity extends AppCompatActivity implements View.OnC
             }
 
             @Override
-            public void onFailure(Call<JSONObject> call, Throwable t) {
+            public void onFailure(Call<JsonObject> call, Throwable t) {
                 Log.d("network: ", "fail");
             }
         });
@@ -127,17 +131,17 @@ public class WalkingReviewActivity extends AppCompatActivity implements View.OnC
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 if(response.isSuccessful()) {
                     walkId = response.body().get("id").getAsLong();
-                    Toast.makeText(getApplicationContext(), "산책 후기 등록에 성공했습니다", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "post walk success", Toast.LENGTH_SHORT).show();
                     Log.d("get walkId", "success");
                 } else {
-                    Toast.makeText(getApplicationContext(), "산책 후기 등록에 실패했습니다", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "post walk fail", Toast.LENGTH_SHORT).show();
                     Log.d("get walkId", "failure");
                 }
             }
 
             @Override
             public void onFailure(Call<JsonObject> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), "산책 후기 등록에 실패했습니다", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "post walk fail", Toast.LENGTH_SHORT).show();
                 Log.d("network: ", "failure");
             }
         };

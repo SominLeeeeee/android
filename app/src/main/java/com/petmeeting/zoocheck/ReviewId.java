@@ -4,8 +4,8 @@ public class ReviewId {
     Users user;
     Long walkId;
 
-    public ReviewId(String userId, Long walkId) {
-        this.walkId = walkId;
+    public ReviewId(String userId) {
+        //this.walkId = walkId;
         setUser(userId);
     }
 

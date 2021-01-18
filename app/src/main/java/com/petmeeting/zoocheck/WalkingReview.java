@@ -7,9 +7,9 @@ public class WalkingReview {
     int score;
     int activity, sociality, aggression, bark;
 
-    public WalkingReview(String userId, Long walkId, String ownerReview, String dogReview, int score,
+    public WalkingReview(String userId, String ownerReview, String dogReview, int score,
                          int activity, int sociality, int aggression, int bark) {
-        setId(userId, walkId);
+        setId(userId);
         this.score = score;
         this.dogReview = dogReview;
         this.ownerReview = ownerReview;
@@ -19,8 +19,8 @@ public class WalkingReview {
         this.bark = bark;
     }
 
-    public void setId(String userId, Long walkId) {
-        this.id = new ReviewId(userId, walkId);
+    public void setId(String userId) {
+        this.id = new ReviewId(userId);
     }
 
     public ReviewId getId() {
