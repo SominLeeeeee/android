@@ -6,6 +6,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.Toast;
 
@@ -39,7 +40,7 @@ public class WalkingReviewActivity extends AppCompatActivity implements View.OnC
 
     RetrofitService service = retrofit.create(RetrofitService.class);
 
-    int score, activity, sociality, aggression, bark;
+    int score=4, activity=4, sociality=4, aggression=4, bark=4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +51,7 @@ public class WalkingReviewActivity extends AppCompatActivity implements View.OnC
         findViewById(R.id.button_walk).setOnClickListener(this);
 
         ArrayList<Integer> ratingList = new ArrayList<Integer>();
+        ratingList.add(R.id.rating_score);
         ratingList.add(R.id.rating_dog_activity);
         ratingList.add(R.id.rating_dog_aggression);
         ratingList.add(R.id.rating_dog_bark);
@@ -66,6 +68,11 @@ public class WalkingReviewActivity extends AppCompatActivity implements View.OnC
             @Override
             public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
                 switch(ratingBarId) {
+                    case R.id.rating_score:
+                        score = (int) v;
+                        String temp0 = "score : " + Integer.toString(score);
+                        Toast.makeText(getApplicationContext(), temp0, Toast.LENGTH_SHORT).show();
+                        break;
                     case R.id.rating_dog_activity:
                         activity = (int)v;
                         String temp1 = "activity : " + Integer.toString(activity);
@@ -109,13 +116,14 @@ public class WalkingReviewActivity extends AppCompatActivity implements View.OnC
 
     /* 데이터를 입력받아 WalkingReview 형식으로 만들기 */
     protected WalkingReview makeReview() {
-        String userId, ownerReview, dogReview;
+        EditText editOwner = (EditText)findViewById(R.id.text_owner_review);
+        EditText editDog = (EditText)findViewById(R.id.text_dog_review);
 
+        String ownerReview = editOwner.getText().toString();
+        String dogReview = editDog.getText().toString();
+        String userId = UseSharedPref.getUserId(this);
 
-        // TODO - 지금은 임시로 데이터 저장해둠, 데이터 입력받는 거 구현하기
-        userId = UseSharedPref.getUserId(this);
-
-        WalkingReview review = new WalkingReview(userId, "", "", 5, activity, sociality, aggression, bark);
+        WalkingReview review = new WalkingReview(userId, ownerReview, dogReview, score, activity, sociality, aggression, bark);
         return review;
     }
 
