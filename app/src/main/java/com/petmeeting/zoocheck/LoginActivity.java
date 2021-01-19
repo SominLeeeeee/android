@@ -51,9 +51,10 @@ public class LoginActivity extends AppCompatActivity implements  View.OnClickLis
         super.onStart();
         // Check for existing Google Sign In account, if the user is already signed in
         // the GoogleSignInAccount will be non-null.
-        // GoogleSignInAccount account = getLastSignedInAccount(this);
-        // checkBeforeSignIn(account);
-        /* TODO - 자동로그인 기능 구현하기 */
+        GoogleSignInAccount account = getLastSignedInAccount(this);
+        if(account != null) {
+            checkBeforeSignIn(new Users(account.getEmail(), account.getEmail(), account.getDisplayName()));
+        }
     }
 
     @Override
